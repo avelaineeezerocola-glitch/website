@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>上海粒子城市 / Shanghai Particle City</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">PARTICLE CANVAS / 01</div>
+        <h1>上海粒子城市</h1>
+        <p>用粒子、视角和手势，穿行于上海的城市记忆。</p>
+      </div>
+      <div class="status-pill"><i></i><span id="statusText">READY</span></div>
+    </header>
+
+    <section class="workspace">
+      <aside class="control-panel">
+        <div class="panel-group">
+          <div class="group-label">01 / 上海场景</div>
+          <div class="scene-grid">
+            <button class="scene-btn active" data-scene="shikumen">01 石库门街巷</button>
+            <button class="scene-btn" data-scene="arch">02 环形建筑</button>
+            <button class="scene-btn" data-scene="city">03 城市天际线</button>
+            <button class="scene-btn" data-scene="bund">04 外滩夜景</button>
+            <button class="scene-btn" data-scene="aerial">05 黄浦江航拍</button>
+            <button class="scene-btn" data-scene="detail">06 建筑细节</button>
+            <button class="scene-btn" data-scene="shikumen240">07 石库门 240°</button>
+            <button class="scene-btn" data-scene="pearl120">08 东方明珠 120°</button>
+            <button class="scene-btn" data-scene="compass">09 视角关系</button>
+            <button class="scene-btn" data-scene="overview">10 总览俯视</button>
+            <button class="scene-btn" data-scene="side">11 侧视图</button>
+            <button class="scene-btn" data-scene="top">12 俯视图</button>
+          </div>
+          <div class="scene-note">12 个粒子场景自动轮播，每个场景停留约 10 秒。</div>
+        </div>
+
+        <div class="panel-group">
+          <div class="group-label">02 / 物理参数</div>
+          <div class="slider-row"><label>粒子数量</label><output id="countValue">48,000</output></div>
+          <input id="countSlider" type="range" min="6000" max="60000" step="1000" value="48000" />
+          <div class="slider-row"><label>排斥力</label><output id="repelValue">0.72</output></div>
+          <input id="repelSlider" type="range" min="0" max="1.5" step="0.01" value="0.72" />
+          <div class="slider-row"><label>回归强度</label><output id="springValue">0.035</output></div>
+          <input id="springSlider" type="range" min="0.005" max="0.12" step="0.005" value="0.035" />
+        </div>
+
+        <div class="panel-group">
+          <div class="group-label">03 / 交互输入</div>
+          <div class="toggle-row"><div><strong>鼠标 / 触控</strong><small>拖拽旋转视角，移动靠近粒子</small></div><button class="toggle on" data-target="mouseEnabled"><span></span></button></div>
+          <div class="toggle-row"><div><strong>摄像头 / 手势</strong><small id="cameraHint">食指控制视角与粒子场</small></div><button class="toggle" id="cameraToggle" data-target="cameraEnabled"><span></span></button></div>
+        </div>
+
+        <button class="reset-btn" id="resetBtn">↺ 重新聚合</button>
+      </aside>
+
+      <section class="canvas-panel">
+        <div class="canvas-toolbar"><span>LIVE FIELD</span><span id="fpsText">60 FPS</span></div>
+        <canvas id="particleCanvas"></canvas>
+        <div class="canvas-hint"><span class="dot blue"></span>靠近粒子 <span class="dot orange"></span>点击爆炸 <span class="dot white"></span>拖拽旋转视角</div>
+        <video id="cameraVideo" autoplay muted playsinline></video>
+        <div class="camera-badge" id="cameraBadge">CAMERA OFF</div>
+      </section>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="assets/particle-data.js?v=20261101-data"></script>
+  <script src="app.js?v=20261101-particle-only"></script>
+</body>
+</html>
